@@ -1,0 +1,121 @@
+import com.android.build.gradle.AppPlugin
+import com.android.build.gradle.LibraryPlugin
+import proguard.gradle.ProGuardTask
+apply plugin: 'com.android.library'
+
+def VERSIONCODE = 1
+def VERSIONNAME = "1.0.0"
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+
+    sourceSets {
+
+        main {
+            assets.srcDirs       = ['src/main/assets']
+            jniLibs.srcDirs = ['src/main/libs']
+            res.srcDirs          = ['src/main/res']
+            aidl.srcDirs         = ['src/main/java']
+            resources.srcDirs    = ['src/main/java']
+            renderscript.srcDirs = ['src/main/java']
+            java.srcDirs         = ['src/main/java']
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+        }
+
+        defaultConfig {
+            minSdkVersion 8
+            targetSdkVersion 22
+            versionCode VERSIONCODE
+            versionName VERSIONNAME
+        }
+
+        packagingOptions {
+            exclude 'META-INF/LICENSE'
+            exclude 'META-INF/license.txt'
+            exclude 'META-INF/NOTICE'
+            exclude 'META-INF/notice.txt'
+            exclude 'META-INF/DEPENDENCIES'
+        }
+        buildTypes {
+            release {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            }
+        }
+    }
+}
+task buildJarDoc(type: Javadoc) {
+    title = 'OneStep-' + VERSIONNAME +" API"
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/7/docs/api"
+        linksOffline "http://d.android.com/reference","${android.sdkDirectory}/docs/reference"
+    }
+    exclude '**/BuildConfig.java'
+    exclude '**/R.java'
+    exclude 'smartisanos/util/**'
+}
+
+
+//dependsOn 可根据实际需要增加或更改
+task buildJar(dependsOn: ['compileReleaseJavaWithJavac'], type: Jar) {
+    appendix = "onestep"
+    baseName = "androidJar"
+    version = VERSIONNAME
+    classifier = "release"
+    //后缀名
+    extension = "jar"
+    //最终的 Jar 包名，如果没设置，默认为 [baseName]-[appendix]-[version]-[classifier].[extension]
+    archiveName = appendix + "-" + version + "." + extension
+    //需打包的资源所在的路径集
+    def srcClassDir = [project.buildDir.absolutePath + "/intermediates/classes/release"];
+    //初始化资源路径集
+    from srcClassDir
+    //去除路径集下部分的资源
+    //    exclude "org/chaos/demo/jar/MainActivity.class"
+    //    exclude "org/chaos/demo/jar/MainActivity\$*.class"
+        exclude "com/smartisan/onestep/sdk/BuildConfig.class"
+        exclude "com/smartisan/onestep/sdk/BuildConfig\$*.class"
+        exclude "**/R.class"
+        exclude "**/R\$*.class"
+    //只导入资源路径集下的部分资源
+    //include "com/smartisan/onestep/sdk/**/*.class"
+    //注: exclude include 支持可变长参数
+}
+
+task proguardJar(dependsOn: ['buildJar'], type: ProGuardTask) {
+    //Android 默认的 proguard 文件
+    configuration android.getDefaultProguardFile('proguard-android.txt')
+    //manifest 注册的组件对应的 proguard 文件
+    configuration project.buildDir.absolutePath + "/intermediates/proguard-rules/release/aapt_rules.txt"
+    configuration 'proguard-rules.txt'
+    String inJar = buildJar.archivePath.getAbsolutePath()
+    //输入 jar
+    injars inJar
+    //输出 jar
+    outjars inJar.substring(0, inJar.lastIndexOf('/')) + "/proguard-${buildJar.archiveName}"
+    //设置不删除未引用的资源(类，方法等)
+    dontshrink
+    Plugin plugin = getPlugins().hasPlugin(AppPlugin) ?
+            getPlugins().findPlugin(AppPlugin) :
+            getPlugins().findPlugin(LibraryPlugin)
+    if (plugin != null) {
+        List<String> runtimeJarList
+        if (plugin.getMetaClass().getMetaMethod("getRuntimeJarList")) {
+            runtimeJarList = plugin.getRuntimeJarList()
+        } else if (android.getMetaClass().getMetaMethod("getBootClasspath")) {
+            runtimeJarList = android.getBootClasspath()
+        } else {
+            runtimeJarList = plugin.getBootClasspath()
+        }
+        for (String runtimeJar : runtimeJarList) {
+            //给 proguard 添加 runtime
+            libraryjars(runtimeJar)
+        }
+    }
+}
