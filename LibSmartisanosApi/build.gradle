@@ -45,7 +45,7 @@ android {
     }
 }
 task buildJarDoc(type: Javadoc) {
-    title = 'OneStep-' + VERSIONNAME +" API"
+    title = 'smartisanos-api ' + VERSIONNAME
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
     options {
@@ -58,7 +58,6 @@ task buildJarDoc(type: Javadoc) {
     }
     exclude '**/BuildConfig.java'
     exclude '**/R.java'
-    exclude 'smartisanos/util/**'
 }
 
 
