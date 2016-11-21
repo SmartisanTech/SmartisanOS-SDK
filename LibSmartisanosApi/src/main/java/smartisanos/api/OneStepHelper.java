@@ -3,6 +3,7 @@ package smartisanos.api;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.View;
+import android.widget.TextDragPopupWindow;
 
 import java.io.File;
 
@@ -10,7 +11,7 @@ import smartisanos.util.SidebarUtils;
 
 /**
  * @author Smartisan
- * @version 1.0.0
+ * @version 1.0.1
  */
 public final class OneStepHelper {
 
@@ -151,5 +152,23 @@ public final class OneStepHelper {
      */
     public void dragMultipleImages(View view,  File[] files, String[] mimeTypes) {
         SidebarUtils.dragMultipleImage(view,mContext,files, mimeTypes);
+    }
+
+    /**
+     * Popup drag window to share text.
+     *
+     * For example: Smartisan Browser App long press and share an select text.
+     *
+     * @param view The View object which you press it
+     * @param dragListener The listener will be callback when start to drag the windown.
+     * @param content The content which you want to share.
+     * @param x,y The position which you to popup window.
+     * @return TextDragPopupWindow
+     */
+    public TextDragPopupWindow showDragPopupText(View view, View.OnDragListener dragListener, String content, int x, int y) {
+        TextDragPopupWindow textDragPopupWindow = new TextDragPopupWindow(view, dragListener);
+        textDragPopupWindow.measureContent(content);
+        textDragPopupWindow.show(x, y);
+        return textDragPopupWindow;
     }
 }

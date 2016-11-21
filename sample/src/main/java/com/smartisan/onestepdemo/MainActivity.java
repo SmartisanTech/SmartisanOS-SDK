@@ -3,13 +3,17 @@ package com.smartisan.onestepdemo;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.DragEvent;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.TextDragPopupWindow;
+import android.widget.Toast;
 
 import smartisanos.api.OneStepHelper;
 
 public class MainActivity extends Activity {
     private OneStepHelper mOneStepHelper;
+    private TextDragPopupWindow mTextDragPopupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,27 +43,42 @@ public class MainActivity extends Activity {
                 return false;
             }
         });
-//        View imageView = findViewById(R.id.image);
-//        imageView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                if (mOneStepHelper.isOneStepShowing()) {
-////                    mOneStepHelper.dragImage();
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
-//        View fileView = findViewById(R.id.file);
-//        fileView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                if (OneStepHelper.getInstance(MainActivity.this).isOneStepShowing()) {
-//                    OneStepHelper.getInstance(MainActivity.this).dragText(v, "永远年轻,永远热泪盈眶!");
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
+
+        final Button btn_show_popup = (Button) findViewById(R.id.btn_show_popup);
+        btn_show_popup.setOnClickListener(new View.OnClickListener() {
+
+            View.OnDragListener dragListener = new View.OnDragListener() {
+
+                @Override
+                public boolean onDrag(View view, DragEvent dragEvent) {
+                    Toast.makeText(MainActivity.this, "Drag started", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            };
+
+            @Override
+            public void onClick(View view) {
+                if (mOneStepHelper.isOneStepShowing()) {
+                    mTextDragPopupWindow = mOneStepHelper.showDragPopupText(btn_show_popup,
+                            dragListener,
+                            "One Step",
+                            btn_show_popup.getLeft(),
+                            btn_show_popup.getTop());
+
+                }
+            }
+
+        });
+
+        final Button btn_hide_popup = (Button) findViewById(R.id.btn_hide_popup);
+        btn_hide_popup.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                if (mTextDragPopupWindow != null) {
+                    mTextDragPopupWindow.hide();
+                }
+            }
+        });
     }
 }

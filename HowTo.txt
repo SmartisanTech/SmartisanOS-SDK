@@ -1,0 +1,6 @@
+1> 配置AndroidManifest.xml
+   增加如下:
+             <meta-data android:name="Smartisanos_Features" android:value="onestep"/>
+             
+2> 在代码中调用相应的APi. APi可参考JavaDoc.
+   例如: import smartisanos.api.OneStepHelper; 

@@ -2,6 +2,7 @@ package smartisanos.util;
 
 import android.view.Window;
 
+@Deprecated
 public class StatusBarColorUtils {
 
     public static void setStatusBarColor(Window window, int color) {

@@ -45,22 +45,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textSize="10sp"
-        android:text="拖拽图片"/>
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@mipmap/ic_launcher" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="10sp"
-        android:text="拖拽文件"/>
-    <ImageView
-        android:id="@+id/file"
+        android:text="拖拽 Window"/>
+    <Button
+        android:id="@+id/btn_show_popup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_fso_folder" />
+        android:text="打开拖拽 Window" />
+    <Button
+        android:id="@+id/btn_hide_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="关闭拖拽 Window" />
 </LinearLayout>

@@ -3,8 +3,8 @@ import com.android.build.gradle.LibraryPlugin
 import proguard.gradle.ProGuardTask
 apply plugin: 'com.android.library'
 
-def VERSIONCODE = 1
-def VERSIONNAME = "1.0.0"
+def VERSIONCODE = 2
+def VERSIONNAME = "1.0.1"
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
@@ -49,6 +49,7 @@ task buildJarDoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
     options {
+        locale 'zh'
         encoding "UTF-8"
         charSet 'UTF-8'
         author true
@@ -58,6 +59,8 @@ task buildJarDoc(type: Javadoc) {
     }
     exclude '**/BuildConfig.java'
     exclude '**/R.java'
+    exclude '**/StatusBarUtils.java'
+    exclude '**/StatusBarColorUtils.java'
 }
 
 

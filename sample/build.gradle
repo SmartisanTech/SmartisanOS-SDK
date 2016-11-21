@@ -18,5 +18,5 @@ android {
 }
 
 dependencies {
-    compile files('libs/smartisanos-api-1.0.0.jar')
+    compile files('libs/smartisanos-api-1.0.1.jar')
 }
