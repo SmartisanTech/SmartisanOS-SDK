@@ -4,7 +4,7 @@ import proguard.gradle.ProGuardTask
 apply plugin: 'com.android.library'
 
 def VERSIONCODE = 2
-def VERSIONNAME = "1.0.1"
+def VERSIONNAME = "1.0.2"
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
@@ -49,9 +49,9 @@ task buildJarDoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
     options {
-        locale 'zh'
+        locale "zh"
         encoding "UTF-8"
-        charSet 'UTF-8'
+        charSet "UTF-8"
         author true
         version true
         links "http://docs.oracle.com/javase/7/docs/api"
@@ -61,6 +61,8 @@ task buildJarDoc(type: Javadoc) {
     exclude '**/R.java'
     exclude '**/StatusBarUtils.java'
     exclude '**/StatusBarColorUtils.java'
+    exclude 'android/view/**'
+    exclude '**/SidebarUtils.java'
 }
 
 

@@ -13,16 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package smartisanos.util;
+ 
+package android.view.onestep;
 
-import android.view.Window;
+/**
+ * The interface that apps use to talk to the one step manager.
+ * <p>
+ * Use <code>Context.getSystemService(Context.ONE_STEP_SERVICE)</code> to get one of these.
+ *
+ * @see android.content.Context#getSystemService
+ */
+public interface OneStepManager {
 
-@Deprecated
-public class StatusBarColorUtils {
+    /**
+     *  Whether in one step mode or not.
+     *
+     * @return {@code true} if in the onestep mode, or
+     * {@code false} if it fails anywhere. Returning {@code false} means the system was not
+     * in oneStep mode, can not drag anything.
+     */
+    public boolean isInOneStepMode();
 
-    public static void setStatusBarColor(Window window, int color) {
-    }
 
-    public static void setLightStatusBar(Window window, boolean light) {
-    }
 }

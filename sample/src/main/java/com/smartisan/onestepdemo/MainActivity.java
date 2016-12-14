@@ -10,6 +10,7 @@ import android.widget.TextDragPopupWindow;
 import android.widget.Toast;
 
 import smartisanos.api.OneStepHelper;
+import smartisanos.util.SidebarUtils;
 
 public class MainActivity extends Activity {
     private OneStepHelper mOneStepHelper;
@@ -28,6 +29,8 @@ public class MainActivity extends Activity {
                 if (mOneStepHelper.isOneStepShowing()) {
                     mOneStepHelper.dragText(v, "永远年轻,永远热泪盈眶!");
                     return true;
+                }else {
+                    Toast.makeText(MainActivity.this, "还没进入OneStep模式呢.", Toast.LENGTH_SHORT).show();
                 }
                 return false;
             }

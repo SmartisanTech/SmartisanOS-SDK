@@ -1,3 +1,18 @@
+/**
+ * Copyright (c) 2016, The Smartisan Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package smartisanos.api;
 
 import android.content.Context;
@@ -162,7 +177,8 @@ public final class OneStepHelper {
      * @param view The View object which you press it
      * @param dragListener The listener will be callback when start to drag the windown.
      * @param content The content which you want to share.
-     * @param x,y The position which you to popup window.
+     * @param x The x position which you to popup window.
+     * @param y The y position which you to popup window.
      * @return TextDragPopupWindow
      */
     public TextDragPopupWindow showDragPopupText(View view, View.OnDragListener dragListener, String content, int x, int y) {
