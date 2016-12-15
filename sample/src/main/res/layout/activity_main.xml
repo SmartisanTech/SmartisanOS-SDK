@@ -1,59 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
     tools:context="com.smartisan.onestepdemo.MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="10sp"
-        android:text="拖拽文字"/>
-    <TextView
-        android:id="@+id/text"
+    <LinearLayout
+        android:id="@+id/activity_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/background_light"
-        android:textSize="20sp"
-        android:text="Hello World."/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/how_to_use"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textColor="#5079d9"
+            android:text="OneStep 操作简介"/>
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="10sp"
-        android:text="拖拽链接"/>
-    <TextView
-        android:id="@+id/link"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/background_light"
-        android:autoLink="all"
-        android:textSize="20sp"
-        android:text="www.t.tt"/>
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="拖拽文字"/>
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:textSize="20sp"
+            android:text="Hello World."/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="10sp"
-        android:text="拖拽 Window"/>
-    <Button
-        android:id="@+id/btn_show_popup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="打开拖拽 Window" />
-    <Button
-        android:id="@+id/btn_hide_popup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="关闭拖拽 Window" />
-</LinearLayout>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="拖拽文字(卡片样式)"/>
+        <TextView
+            android:id="@+id/text_card_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:textSize="20sp"
+            android:text="Hello World."/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="拖拽链接"/>
+        <TextView
+            android:id="@+id/link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:autoLink="all"
+            android:textSize="20sp"
+            android:text="www.t.tt"/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="拖拽文件"/>
+        <TextView
+            android:id="@+id/file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:textSize="20sp"
+            android:text="file info"/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="拖拽文件(卡片样式)"/>
+        <TextView
+            android:id="@+id/file_card_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:textSize="20sp"
+            android:text="file info"/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="拖拽图片"/>
+        <TextView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:textSize="20sp"
+            android:text="image info"/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="拖拽图片(缩略图显示指定的)"/>
+        <TextView
+            android:id="@+id/image_show_specific"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:textSize="20sp"
+            android:text="image info"/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="拖拽多张图片"/>
+        <TextView
+            android:id="@+id/multi_images"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:textSize="20sp"
+            android:text="multi image info"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="10sp"
+            android:text="拖拽 Window"/>
+        <Button
+            android:id="@+id/btn_show_popup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="打开拖拽 Window" />
+        <Button
+            android:id="@+id/btn_hide_popup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关闭拖拽 Window" />
+
+    </LinearLayout>
+</ScrollView>

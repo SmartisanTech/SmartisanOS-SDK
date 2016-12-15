@@ -155,7 +155,7 @@ public final class OneStepHelper {
      * @param mimeType The mimeType of image.
      */
     public void dragImage(View view,  Bitmap content, File file, String mimeType) {
-        SidebarUtils.dragImage(view, mContext, file, mimeType);
+        SidebarUtils.dragImage(view, mContext, content, file, mimeType);
     }
 
     /**
